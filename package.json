@@ -1,0 +1,19 @@
+{
+  "name": "WDIO-Framework-2",
+  "version": "0.0.1",
+  "description": "pom with webdriverIO",
+  "private": "true",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/local-runner": "^8.35.1",
+    "@wdio/mocha-framework": "^8.35.0",
+    "@wdio/spec-reporter": "^8.32.4"
+  },
+  "scripts": {
+    "test": "wdio run src/configs/wdio.conf.js"
+  },
+  "dependencies": {
+    "@wdio/cli": "^8.35.1",
+    "webdriverio": "^8.35.1"
+  }
+}
