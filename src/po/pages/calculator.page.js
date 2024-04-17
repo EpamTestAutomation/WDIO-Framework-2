@@ -30,6 +30,7 @@ class CalculatorPage {
     async fillOutForm() {
 
         await this.clickElement(await this.computeEngineIcon)
+        await this.instanceInput.waitForDisplayed({timeout: 90000});
         await this.instanceInput.setValue('4')
 
         await this.clickElement(await this.softwareSelect)

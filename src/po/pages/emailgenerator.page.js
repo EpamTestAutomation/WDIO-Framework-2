@@ -1,17 +1,23 @@
 class GenerateEmail {
     get generateEmailLink() { return $('#listeliens [href="email-generator"]') }
     get clipboardEmail() { return $('#cprnd') }
-    get iframeElement() { return $('iframe#aswift_6') }
+    get outerFrame() { return $('#aswift_6') }
+    get innerFrame() { return $('#ad_iframe') }
+    get advertisement() { return $('div#card') }
     get modal() { return $('#dismiss-button') }
-    
-    
+
+
     async closeModal() {
-        const popup = await $('tu_selector_del_popup').waitForExist({ timeout: 5000 });
-        if (popup) {
-            // Si se encuentra el popup, haz clic en el botón de cierre (reemplaza 'tu_selector_del_boton_de_cierre' con uno válido)
-            await $('tu_selector_del_boton_de_cierre').click();
+        if (await this.advertisement.waitForDisplayed({ timeout: 60000 })) {
+            await browser.switchToFrame(await this.outerFrame)
+            await browser.switchToFrame(await this.innerFrame)
+            await this.modal.waitForClickable()
+            await this.modal.click(); 
+        } else {
+            await browser.switchToFrame(await this.outerFrame)
+            await this.modal.waitForClickable()
+            await this.closeModal.click(); 
         }
-        await this.modal.click()
     }
 
     async generateEmail() {
@@ -31,7 +37,7 @@ class GenerateEmail {
     }
 
     async switchToFrame() {
-        await browser.switchToFrame(await this.iframeElement)
+        
     }
 }
 
