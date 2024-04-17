@@ -1,31 +1,31 @@
 class CalculatorPage {
-    get outerIframe() { return $(0) }
-    get innerIframe() { return $('iframe#myFrame')}
-    get computeEngineIcon() { return $('#tab-item-1 > .tab-holder')}
-    get instanceInput() { return $('.layout-row:nth-child(3) input#input_100')}
-    get form() { return $('form[name=ComputeEngineForm]')}
-    get softwareSelect() { return $('.layout-row:nth-child(5) #select_value_label_92')}
-    get softwareOption() { return $('md-option#select_option_102 > .md-text')}
-    get provisioningModelSelect() { return this.form.$('.layout-row:nth-child(6) #select_value_label_93')}
-    get provisioningModelOption() { return $('md-option#select_option_115 > .md-text')}
-    get machineFamilySelect() { return this.form.$('.layout-row:nth-child(7) #select_value_label_94')}
-    get machineFamilyOption() { return $('md-option#select_option_119 > .md-text')}
-    get seriesSelect() { return this.form.$('.layout-row:nth-child(8) #select_value_label_95')}
-    get seriesOption() { return $('md-option#select_option_224 > .md-text')}
-    get machineTypeSelect() { return this.form.$('.layout-row:nth-child(9) #select_value_label_96')}
-    get machineTypeOption() { return $('md-option#select_option_474 > .md-text')}
-    get gpuCheckbox() { return this.form.$('.layout-row:nth-child(15) md-checkbox > .md-container')}
-    get gpuTypeSelect() { return this.form.$('.layout-row #select_510')}
-    get gpuTypeOption() { return $('md-option#select_option_517 > .md-text')}
-    get gpuNumberSelect() { return this.form.$('.layout-row #select_512')}
-    get gpuNumberOption() { return $('md-option#select_option_520 > .md-text')}
-    get ssdLocalSelect() { return this.form.$('.layout-row #select_469')}
-    get ssdLocalOption() { return $('md-option#select_option_495 > .md-text')}
-    get locationSelect() { return $('.layout-row #select_133')}
-    get locationOption() { return $('md-option#select_option_268 > .md-text')}
-    get usageSelect() { return this.form.$('.layout-row #select_140')}
-    get usageOption() { return $('md-option#select_option_138 > .md-text')}
-    get submitEstimateButton() { return this.form.$('.cpc-button.md-button.md-ink-ripple.md-primary.md-raised')}
+    get outerIframe() { return $('#cloud-site devsite-iframe iframe') }
+    get innerIframe() { return $('iframe#myFrame') }
+    get computeEngineIcon() { return $('#tab-item-1 .tab-holder') }
+    get form() { return $('form[name=ComputeEngineForm]') }
+    get instanceInput() { return $('#input_100') }
+    get softwareSelect() { return this.form.$('#select_value_label_92') }
+    get softwareOption() { return $('#select_option_102 .md-text') }
+    get provisioningModelSelect() { return this.form.$('#select_value_label_93') }
+    get provisioningModelOption() { return $('#select_option_115 .md-text') }
+    get machineFamilySelect() { return this.form.$('#select_value_label_94') }
+    get machineFamilyOption() { return $('#select_option_119 .md-text') }
+    get seriesSelect() { return this.form.$('#select_value_label_95') }
+    get seriesOption() { return $('#select_option_224 .md-text') }
+    get machineTypeSelect() { return this.form.$('#select_value_label_96') }
+    get machineTypeOption() { return $('#select_option_474 .md-text') }
+    get gpuCheckbox() { return this.form.$('[aria-label="Add GPUs"]') }
+    get gpuTypeSelect() { return this.form.$('#select_510') }
+    get gpuTypeOption() { return $('#select_option_517 .md-text') }
+    get gpuNumberSelect() { return this.form.$('#select_512') }
+    get gpuNumberOption() { return $('#select_option_520 .md-text') }
+    get ssdLocalSelect() { return this.form.$('#select_469') }
+    get ssdLocalOption() { return $('#select_option_495 .md-text') }
+    get locationSelect() { return $('#select_133') }
+    get locationOption() { return $('#select_option_268 .md-text') }
+    get usageSelect() { return this.form.$('#select_140') }
+    get usageOption() { return $('#select_option_138 .md-text') }
+    get submitEstimateButton() { return this.form.$('.cpc-button.md-button.md-ink-ripple.md-primary.md-raised') }
 
     async fillOutForm() {
 
@@ -51,7 +51,7 @@ class CalculatorPage {
 
         await this.clickElement(await this.gpuTypeSelect)
         await this.clickElement(await this.gpuTypeOption)
-        
+
         await this.clickElement(await this.gpuNumberSelect)
         await this.clickElement(await this.gpuNumberOption)
 
@@ -70,9 +70,14 @@ class CalculatorPage {
     }
 
     async clickElement(selector) {
-        await $(selector).waitForDisplayed();
+        await $(selector).waitForDisplayed({timeout: 90000});
         await $(selector).waitForClickable();
         await $(selector).click();
+    }
+
+    async switchToFrame() {
+        await browser.switchToFrame(await this.outerIframe)
+        await browser.switchToFrame(await this.innerIframe)
     }
 }
 

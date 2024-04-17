@@ -1,11 +1,11 @@
-
 class EmailInbox {
-    get emailInbox() { return $('.nw > button:nth-of-type(2)') }
-    get iframeElement() { return $('iframe#ifmail') }
     get totalCostEmail() { return $('h2') }
+    get iframeElement() { return $('#ifmail') }
+    get emailInbox() { return $('.nw button:nth-of-type(2)') }
+    
 
     async awaitCostEmail() {
-        await this.totalCostEmail.waitForDisplayed({ timeout: 6000 })
+        await this.totalCostEmail.waitForDisplayed({ timeout: 60000 })
     }
 
     async selectEmailInbox() {
@@ -15,8 +15,7 @@ class EmailInbox {
     }
 
     async switchToFrame() {
-        const frame = await this.iframeElement
-        await browser.switchToFrame(frame)
+        await browser.switchToFrame(await this.iframeElement)
     }
 
 }

@@ -1,7 +1,7 @@
 
 class HomePage {
     get searchIcon() { return $('div.p1o4Hf') }
-    get searchInput() { return $('div.YSM5S input') }
+    get searchInput() { return $('div.YSM5S input[aria-label="Search"]') }
     get searchButton() { return $('div.mb2a7b [role="button"]') }
 
     async performSearch() {

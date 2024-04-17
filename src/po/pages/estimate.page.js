@@ -1,6 +1,6 @@
 class EstimateEmail {
-    get totalEstimateTitle() { return $('#resultBlock .md-title > .ng-binding') }
-    get emailButton() { return $('.cpc-cart-buttons.layout-align-space-between-start button:nth-child(2)') }
+    get totalEstimateTitle() { return $('#resultBlock .md-title .ng-binding') }
+    get emailButton() { return $('button[id="Email Estimate"]') }
     
     async selectEmailEstimate() {
         await this.clickElement(await this.emailButton)

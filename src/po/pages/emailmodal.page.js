@@ -1,9 +1,10 @@
 import { Key } from 'webdriverio'
 
 class EmailModal {
+    get form() { return $('form[name="emailForm"]') }
     get emailDialog() { return $('.md-dialog-container.ng-scope') }
-    get emailInput() { return $('div:nth-of-type(3) > .flex > input[name="description"]') }
-    get sendEmailButton() { return $('md-dialog form .layout-row:nth-child(3) button:nth-child(2)') }
+    get emailInput() { return this.form.$('.md-dialog-container.ng-scope #input_620') }
+    get sendEmailButton() { return this.form.$('.md-raised.md-primary.cpc-button.md-button.md-ink-ripple') }
 
     async awaitEmailDialog() {
         await this.emailDialog.waitForDisplayed({ timeout: 6000 })
