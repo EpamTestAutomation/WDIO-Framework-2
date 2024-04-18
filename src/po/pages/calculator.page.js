@@ -4,7 +4,7 @@ class CalculatorPage {
     get computeEngineIcon() { return $('#tab-item-1 .tab-holder') }
     get form() { return $('form[name=ComputeEngineForm]') }
     get instanceInput() { return $('#input_100') }
-    get softwareSelect() { return this.form.$('#select_value_label_92') }
+    get softwareSelect() { return $('.layout-row #select_value_label_92') }
     get softwareOption() { return $('#select_option_102 .md-text') }
     get provisioningModelSelect() { return this.form.$('#select_value_label_93') }
     get provisioningModelOption() { return $('#select_option_115 .md-text') }
@@ -33,7 +33,10 @@ class CalculatorPage {
         await this.instanceInput.waitForDisplayed({timeout: 90000});
         await this.instanceInput.setValue('4')
 
-        await this.clickElement(await this.softwareSelect)
+        await this.softwareSelect.waitForDisplayed({timeout: 10000});
+        await this.softwareSelect.waitForClickable({timeout: 10000});
+        await this.softwareSelect.click()
+
         await this.clickElement(await this.softwareOption)
 
         await this.clickElement(await this.provisioningModelSelect)
@@ -71,8 +74,8 @@ class CalculatorPage {
     }
 
     async clickElement(selector) {
-        await $(selector).waitForDisplayed({timeout: 90000});
-        await $(selector).waitForClickable();
+        await $(selector).waitForDisplayed({timeout: 60000});
+        await $(selector).waitForClickable({timeout: 60000});
         await $(selector).click();
     }
 
