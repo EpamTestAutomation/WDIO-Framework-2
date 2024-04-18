@@ -24,8 +24,18 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './../tests/*.tests.js'
+        './../tests/cloud.tests.js'
     ],
+
+    suites: {
+        smoke: [
+            './path/to/smoke/tests/*.js'
+        ],
+        regression: [
+            './path/to/regression/tests/*.js'
+        ]
+    },
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
